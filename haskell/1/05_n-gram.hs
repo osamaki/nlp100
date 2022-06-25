@@ -3,8 +3,10 @@ import qualified Data.List as L
 ngram :: Int -> [a] -> [[a]]
 ngram n = filter ((>= n) . length) . map (take n) . L.tails
 
+bigram :: [a] -> [[a]]
+bigram = ngram 2
+
 main = do
-    n <- readLn :: IO Int
     s <- getLine
-    print $ "Character n-gram: " ++ (show $ ngram n s)
-    print $ "Word n-gram: " ++ (show . ngram n $ words s)
+    print $ "Character bi-gram: " ++ (show $ bigram s)
+    print $ "Word bi-gram: " ++ (show . bigram $ words s)
